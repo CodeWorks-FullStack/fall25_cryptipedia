@@ -34,14 +34,15 @@ img {
   transition: filter 1s ease;
 }
 
-.cryptid-info:hover img {
-  filter: blur(0);
-}
-
 .cryptid-info {
   text-shadow: 0 0 10px black, 1px 2px black;
   font-weight: bold;
   font-size: 1.5rem;
+  overflow: hidden;
+}
+
+.cryptid-info:hover img {
+  filter: blur(0);
 }
 
 a {

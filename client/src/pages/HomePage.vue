@@ -64,6 +64,12 @@ async function getCryptids() {
   transform: scaleX(-1);
   filter: hue-rotate(185deg);
   opacity: .8;
+  transition: opacity 5s ease;
+}
+
+.terrestrial-cryptid:hover {
+  opacity: .06;
+  transition: opacity 350ms ease;
 }
 
 .spooky-woods-bg {
@@ -77,7 +83,7 @@ async function getCryptids() {
   }
 
   .col-md-8 {
-    text-shadow: 0 1px black;
+    text-shadow: 0 0 10px black, 0 1px black;
     font-weight: bold;
   }
 }

@@ -28,7 +28,9 @@ async function getCryptidById() {
     <div v-if="cryptid" class="row">
       <div class="col-md-8">
         <div class="italiana-font p-3">
-          <span class="text-capitalize fs-2 text-warning">{{ cryptid.origin }} Cryptid</span>
+          <span class="text-capitalize fs-2 text-warning">
+            {{ cryptid.origin }} Cryptid
+          </span>
           <h1 class="display-1">{{ cryptid.name.toUpperCase() }}</h1>
           <p class="ibm-plex-mono-font">{{ cryptid.description }}</p>
           <h2>Size</h2>
@@ -48,7 +50,7 @@ async function getCryptidById() {
         </div>
       </div>
       <div class="col-md-4 px-0">
-        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="img-fluid cryptid-img">
+        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="w-100 cryptid-img">
       </div>
     </div>
     <div v-else class="row">

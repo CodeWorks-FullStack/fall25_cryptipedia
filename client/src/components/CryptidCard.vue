@@ -8,7 +8,8 @@ defineProps({
 
 
 <template>
-  <RouterLink :to="{ name: 'Cryptid Details', params: { cryptidId: cryptid.id } }">
+  <RouterLink :to="{ name: 'Cryptid Details', params: { cryptidId: cryptid.id } }"
+    :title="`View the details for ${cryptid.name} IF YOU DARE`">
     <div class="position-relative cryptid-info">
       <img :src="cryptid.imgUrl" :alt="`A picture of the ${cryptid.name} cryptid`">
       <div class="position-absolute bottom-0 w-100 p-3 ibm-plex-mono-font">

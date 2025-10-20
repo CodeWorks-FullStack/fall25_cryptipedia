@@ -63,5 +63,6 @@ async function getCryptidById() {
 <style lang="scss" scoped>
 .cryptid-img {
   height: calc(100dvh - 76px);
+  object-fit: cover;
 }
 </style>

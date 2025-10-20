@@ -1,4 +1,5 @@
 
+
 namespace cryptipedia.Repositories;
 
 public class CryptidsRepository
@@ -34,5 +35,26 @@ public class CryptidsRepository
       cryptidData).SingleOrDefault();
 
     return createdCryptid;
+  }
+
+  internal List<Cryptid> GetAllCryptids()
+  {
+    string sql = @"
+    SELECT
+    cryptids.*,
+    accounts.*
+    FROM cryptids
+    INNER JOIN accounts ON accounts.id = cryptids.discoverer_id
+    ORDER BY cryptids.id;";
+
+    List<Cryptid> cryptids = _db.Query(
+      sql,
+      (Cryptid cryptid, Profile account) =>
+      {
+        cryptid.Discoverer = account;
+        return cryptid;
+      }).ToList();
+
+    return cryptids;
   }
 }

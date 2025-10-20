@@ -35,7 +35,7 @@ async function getCryptids() {
           </p>
         </div>
       </div>
-      <div class="col-md-4 pe-0 text-end">
+      <div class="col-md-4 pe-0 text-end align-self-end">
         <img src="@/assets/img/little_freak.png" alt="A very mysterious little freak"
           class="img-fluid terrestrial-cryptid">
       </div>

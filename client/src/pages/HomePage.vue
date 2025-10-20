@@ -1,8 +1,12 @@
 <script setup>
+import { AppState } from '@/AppState.js';
+import CryptidCard from '@/components/CryptidCard.vue';
 import { cryptidsService } from '@/services/CryptidsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
+
+const cryptids = computed(() => AppState.cryptids)
 
 onMounted(getCryptids)
 
@@ -35,7 +39,7 @@ async function getCryptids() {
           </p>
         </div>
       </div>
-      <div class="col-md-4 pe-0 text-end align-self-end">
+      <div class="col-md-4 pe-0 text-end align-self-end mt-5">
         <img src="@/assets/img/little_freak.png" alt="A very mysterious little freak"
           class="img-fluid terrestrial-cryptid">
       </div>
@@ -45,6 +49,11 @@ async function getCryptids() {
     <div class="row">
       <div class="col-12 my-5">
         <h1 class="italiana-font display-1">CRYPTIDS</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div v-for="cryptid in cryptids" :key="'cryptid-card-' + cryptid.id" class="col-md-3 px-0 mb-5">
+        <CryptidCard :cryptid="cryptid" />
       </div>
     </div>
   </section>

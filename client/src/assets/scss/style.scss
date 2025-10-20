@@ -1,11 +1,15 @@
 @import '_main.scss';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Italiana&display=swap');
 
+body{
+  overscroll-behavior: none;
+  background-color: var(--bs-dark);
+}
+
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100dvh;
-  background-color: var(--bs-dark);
   color: var(--bs-light);
 }
 

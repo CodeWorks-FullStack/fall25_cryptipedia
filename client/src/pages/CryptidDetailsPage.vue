@@ -1,9 +1,12 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { cryptidsService } from '@/services/CryptidsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+
+const cryptid = computed(() => AppState.cryptid)
 
 const route = useRoute()
 
@@ -21,8 +24,44 @@ async function getCryptidById() {
 
 
 <template>
-  <h1>Cryptid Details Page</h1>
+  <div class="container-fluid">
+    <div v-if="cryptid" class="row">
+      <div class="col-md-8">
+        <div class="italiana-font p-3">
+          <span class="text-capitalize fs-2 text-warning">{{ cryptid.origin }} Cryptid</span>
+          <h1 class="display-1">{{ cryptid.name.toUpperCase() }}</h1>
+          <p class="ibm-plex-mono-font">{{ cryptid.description }}</p>
+          <h2>Size</h2>
+          <div>
+            <span :title="`Size is ${cryptid.size}/10`">
+              <span v-for="size in 10" :key="'cryptid-size-' + size" class="mdi fs-2"
+                :class="cryptid.size < size ? 'mdi-circle-outline' : 'mdi-circle'"></span>
+            </span>
+          </div>
+          <h2>Threat Level</h2>
+          <div>
+            <span :title="`Threat Level is ${cryptid.threatLevel}/10`">
+              <span v-for="threatLevel in 10" :key="'cryptid-threat-level-' + threatLevel" class="mdi fs-2"
+                :class="cryptid.threatLevel < threatLevel ? 'mdi-circle-outline' : 'mdi-circle'"></span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 px-0">
+        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="img-fluid cryptid-img">
+      </div>
+    </div>
+    <div v-else class="row">
+      <div class="col-12">
+        <h1>Loading...</h1>
+      </div>
+    </div>
+  </div>
 </template>
 
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.cryptid-img {
+  height: calc(100dvh - 76px);
+}
+</style>

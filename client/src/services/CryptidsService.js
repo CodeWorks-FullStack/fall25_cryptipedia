@@ -5,6 +5,7 @@ import { Cryptid } from "@/models/Cryptid.js"
 
 class CryptidsService {
   async getCryptidById(cryptidId) {
+    AppState.cryptid = null
     const response = await api.get(`api/cryptids/${cryptidId}`)
     logger.log('GOT CRYPTID 🦟', response.data)
     AppState.cryptid = new Cryptid(response.data)

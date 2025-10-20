@@ -50,7 +50,7 @@ async function getCryptidById() {
         </div>
       </div>
       <div class="col-md-4 px-0">
-        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="w-100 cryptid-img">
+        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="w-100 cryptid-img sticky-top">
       </div>
     </div>
     <div v-else class="row">

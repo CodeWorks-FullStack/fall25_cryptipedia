@@ -37,13 +37,13 @@ INSERT INTO
   )
 VALUES
   (
-    'totoro',
-    2,
-    5,
-    'https://images.unsplash.com/photo-1695550359172-5ad6e9143106?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dG90b3JvfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500',
-    'flying',
-    'big soft idiot',
-    '670ff93326693293c631476f'
+    'Abomination',
+    6,
+    1,
+    'https://images.unsplash.com/photo-1674681937504-d7e747c59a2c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
+    'terrestrial',
+    "The Abomination is a domestic-class cryptid resembling an ordinary housecat but harboring a sinister agenda: it vomits on your bed while you're at work, striking with surgical precision and emotional devastation. Though it appears cute and harmless, its glowing eyes and unsettling purr hint at ancient mischief. It targets freshly made beds, heirloom quilts, and guest linens, timing its attacks for maximum psychological impact—always while the human is away. The vomit is often perfectly centered, sometimes in a spiral, and the creature greets its victim at the door with innocent meows, feigning affection and ignorance. First documented in blurry Nest cam footage and whispered online accounts, the Abomination is believed to be summoned by phrases like “I just changed the sheets.” Countermeasures such as decoy blankets and motion-triggered cameras have proven futile, as footage often mysteriously corrupts. The Abomination cannot be stopped—only respected.",
+    '65f87bc1e02f1ee243874743'
   );
 
 INSERT INTO

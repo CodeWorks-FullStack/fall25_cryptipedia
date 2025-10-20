@@ -28,10 +28,11 @@ defineProps({
 <style lang="scss" scoped>
 img {
   width: 100%;
-  min-height: 600px;
+  height: 600px;
   object-fit: cover;
   filter: blur(4px);
-  transition: filter 1s ease;
+  transition: filter 1s ease, transform 1s ease;
+  transform: scale(1.10);
 }
 
 .cryptid-info {
@@ -43,6 +44,7 @@ img {
 
 .cryptid-info:hover img {
   filter: blur(0);
+  transform: scale(1);
 }
 
 a {

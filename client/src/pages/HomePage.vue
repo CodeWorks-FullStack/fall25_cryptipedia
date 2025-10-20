@@ -79,7 +79,7 @@ async function getCryptids() {
 
   .row {
     backdrop-filter: sepia(.6);
-    background-color: rgba(43, 43, 43, 0.429);
+    background-color: rgba(16, 16, 16, 0.549);
   }
 
   .col-md-8 {

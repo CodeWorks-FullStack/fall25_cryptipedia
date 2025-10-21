@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { reactive } from 'vue'
-// eslint-disable-next-line no-unused-vars
 import { Cryptid } from './models/Cryptid.js'
+import { CryptidEncounterProfile } from './models/CryptidEncounterProfile.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -11,6 +12,8 @@ export const AppState = reactive({
   /** @type {Cryptid[]} */
   cryptids: [],
   /** @type {Cryptid} */
-  cryptid: null
+  cryptid: null,
+  /** @type {CryptidEncounterProfile[]} */
+  cryptidEncounterProfiles: []
 })
 

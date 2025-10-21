@@ -7,6 +7,7 @@ class CryptidEncountersService {
   async createCryptidEncounter(cryptidEncounterData) {
     const response = await api.post('api/cryptidEncounters', cryptidEncounterData)
     logger.log('CREATED CRYPTID ENCOUNTER 🥸+🦟', response.data)
+    AppState.cryptidEncounterProfiles.push(new CryptidEncounterProfile(response.data))
   }
   async getCryptidEncountersByCryptidId(cryptidId) {
     const response = await api.get(`api/cryptids/${cryptidId}/cryptidEncounters`)

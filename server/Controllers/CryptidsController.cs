@@ -5,12 +5,14 @@ namespace cryptipedia.Controllers;
 public class CryptidsController : ControllerBase
 {
   private readonly CryptidsService _cryptidsService;
+  private readonly CryptidEncountersService _cryptidEncountersService;
   private readonly Auth0Provider _auth0Provider;
 
-  public CryptidsController(CryptidsService cryptidsService, Auth0Provider auth0Provider)
+  public CryptidsController(CryptidsService cryptidsService, Auth0Provider auth0Provider, CryptidEncountersService cryptidEncountersService)
   {
     _cryptidsService = cryptidsService;
     _auth0Provider = auth0Provider;
+    _cryptidEncountersService = cryptidEncountersService;
   }
 
   [HttpPost, Authorize]
@@ -50,6 +52,20 @@ public class CryptidsController : ControllerBase
     {
       Cryptid cryptid = _cryptidsService.GetCryptidById(cryptidId);
       return Ok(cryptid);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+  [HttpGet("{cryptidId}/cryptidEncounters")]
+  public ActionResult<List<CryptidEncounterProfile>> GetCryptidEncountersByCryptidId(int cryptidId)
+  {
+    try
+    {
+      List<CryptidEncounterProfile> cryptidEncounterProfiles = _cryptidEncountersService.GetCryptidEncountersByCryptidId(cryptidId);
+      return Ok(cryptidEncounterProfiles);
     }
     catch (Exception exception)
     {

@@ -1,4 +1,5 @@
 
+
 namespace cryptipedia.Services;
 
 public class CryptidEncountersService
@@ -14,5 +15,11 @@ public class CryptidEncountersService
   {
     CryptidEncounterProfile cryptidEncounter = _repository.CreateCryptidEncounter(cryptidEncounterData);
     return cryptidEncounter;
+  }
+
+  internal List<CryptidEncounterProfile> GetCryptidEncountersByCryptidId(int cryptidId)
+  {
+    List<CryptidEncounterProfile> cryptidEncounterProfiles = _repository.GetCryptidEncountersByCryptidId(cryptidId);
+    return cryptidEncounterProfiles;
   }
 }

@@ -18,7 +18,7 @@ defineProps({
         {{ cryptid.name }}
       </div>
       <div class="position-absolute top-0 p-3 end-0">
-        <span class="mdi mdi-ufo"></span> 0
+        <span class="mdi mdi-ufo"></span> {{ cryptid.encounterCount }}
       </div>
     </div>
   </RouterLink>

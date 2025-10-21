@@ -73,7 +73,9 @@ async function createCryptidEncounter() {
                 :class="cryptid.threatLevel < threatLevel ? 'mdi-circle-outline' : 'mdi-circle'"></span>
             </span>
           </div>
-          <h2 class="text-warning">Encountered By 900 Humans</h2>
+          <h2 class="text-warning">
+            Encountered By {{ profiles.length }} Human<span v-if="profiles.length != 1">s</span>
+          </h2>
           <button @click="createCryptidEncounter()" v-if="account" class="btn btn-warning ibm-plex-mono-font mb-3">
             I've encountered the {{ cryptid.name }}
           </button>

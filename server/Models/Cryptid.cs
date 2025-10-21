@@ -14,4 +14,5 @@ public class Cryptid : RepoItem<int>
   public string Description { get; set; }
   public string DiscovererId { get; set; }
   public Profile Discoverer { get; set; }
+  public int EncounterCount { get; set; }
 }

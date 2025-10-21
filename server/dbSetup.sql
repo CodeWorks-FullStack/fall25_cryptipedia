@@ -191,3 +191,12 @@ FROM
   INNER JOIN accounts ON accounts.id = cryptids.discoverer_id
 WHERE
   account_id = '670ff93326693293c631476f';
+
+SELECT
+  cryptids.*,
+  COUNT(cryptid_encounters.id) AS encounter_count
+FROM
+  cryptids
+  LEFT OUTER JOIN cryptid_encounters ON cryptids.id = cryptid_encounters.cryptid_id
+GROUP BY
+  cryptids.id;

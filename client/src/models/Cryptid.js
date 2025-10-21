@@ -13,5 +13,6 @@ export class Cryptid {
     this.discoverer = new Profile(data.discoverer)
     this.discovererId = data.discovererId
     this.imgUrl = data.imgUrl
+    this.encounterCount = data.encounterCount
   }
 }

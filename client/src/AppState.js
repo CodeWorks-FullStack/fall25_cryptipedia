@@ -2,6 +2,7 @@
 import { reactive } from 'vue'
 import { Cryptid } from './models/Cryptid.js'
 import { CryptidEncounterProfile } from './models/CryptidEncounterProfile.js'
+import { EncounteredCryptid } from './models/EncounteredCryptid.js'
 
 // NOTE AppState is a reactive object to contain app level data
 export const AppState = reactive({
@@ -14,6 +15,8 @@ export const AppState = reactive({
   /** @type {Cryptid} */
   cryptid: null,
   /** @type {CryptidEncounterProfile[]} */
-  cryptidEncounterProfiles: []
+  cryptidEncounterProfiles: [],
+  /** @type {EncounteredCryptid[]} */
+  encounteredCryptids: []
 })
 

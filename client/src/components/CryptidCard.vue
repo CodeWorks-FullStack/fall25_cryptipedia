@@ -1,27 +1,55 @@
 <script setup>
+import { AppState } from '@/AppState.js';
 import { Cryptid } from '@/models/Cryptid.js';
+import { cryptidEncountersService } from '@/services/CryptidEncountersService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { useRoute } from 'vue-router';
 
-defineProps({
+const props = defineProps({
   cryptid: { type: Cryptid, required: true }
 })
+
+const route = useRoute()
+
+async function deleteCryptidEncounter() {
+  const confirmed = await Pop.confirm(`Are you sure you did not encounter the ${props.cryptid.name}?`)
+
+  if (!confirmed) return
+
+  try {
+    const cryptidEncounter = AppState.encounteredCryptids.find(cryptid => cryptid.id == props.cryptid.id)
+
+    logger.log('the encounter', cryptidEncounter)
+
+    await cryptidEncountersService.deleteCryptidEncounter(cryptidEncounter.cryptidEncounterId)
+  } catch (error) {
+    Pop.error(error)
+    logger.error('COULD NOT DELETE CRYPTID ENCOUNTER', error)
+  }
+}
 </script>
 
 
 <template>
-  <RouterLink :to="{ name: 'Cryptid Details', params: { cryptidId: cryptid.id } }"
-    :title="`View the details for ${cryptid.name} IF YOU DARE`">
-    <div class="position-relative cryptid-info">
+  <div class="position-relative cryptid-info">
+    <RouterLink :to="{ name: 'Cryptid Details', params: { cryptidId: cryptid.id } }"
+      :title="`View the details for ${cryptid.name} IF YOU DARE`">
       <img :src="cryptid.imgUrl" :alt="`A picture of the ${cryptid.name} cryptid`">
-      <div class="position-absolute bottom-0 w-100 p-3 ibm-plex-mono-font">
-        <span v-if="cryptid.id < 10">0</span>{{ cryptid.id }}
-        <hr>
-        {{ cryptid.name }}
-      </div>
-      <div class="position-absolute top-0 p-3 end-0">
-        <span class="mdi mdi-ufo"></span> {{ cryptid.encounterCount }}
-      </div>
+    </RouterLink>
+    <div class="position-absolute bottom-0 w-100 p-3 ibm-plex-mono-font">
+      <span v-if="cryptid.id < 10">0</span>{{ cryptid.id }}
+      <hr>
+      {{ cryptid.name }}
     </div>
-  </RouterLink>
+    <div v-if="route.name == 'Home'" class="position-absolute top-0 p-3 end-0">
+      <span class="mdi mdi-ufo"></span> {{ cryptid.encounterCount }}
+    </div>
+    <div @click="deleteCryptidEncounter()" v-if="route.name == 'Account'" role="button"
+      :title="'Delete encounter with ' + cryptid.name" class="position-absolute top-0 p-3 end-0">
+      <span class="mdi mdi-trash-can"></span>
+    </div>
+  </div>
 </template>
 
 

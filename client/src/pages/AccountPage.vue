@@ -33,6 +33,7 @@ async function getMyEncounteredCryptids() {
       <div v-for="cryptid in cryptids" :key="'encountered-cryptid-' + cryptid.cryptidEncounterId"
         class="col-md-3 px-0 mb-4">
         <CryptidCard :cryptid="cryptid" />
+        <!-- NOTE this would be easier! <button>Delete {{ cryptid.cryptidEncounterId }}</button> -->
       </div>
     </div>
   </div>

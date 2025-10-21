@@ -87,7 +87,7 @@ async function createCryptidEncounter() {
         </div>
       </div>
       <div class="col-md-4 px-0">
-        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="w-100 cryptid-img sticky-top">
+        <img :src="cryptid.imgUrl" :alt="`A photo of the ${cryptid.name} cryptid`" class="w-100 cryptid-img">
       </div>
     </div>
     <div v-else class="row">
@@ -103,6 +103,8 @@ async function createCryptidEncounter() {
 .cryptid-img {
   height: calc(100dvh - 76px);
   object-fit: cover;
+  position: sticky;
+  top: 0;
 }
 
 .profile-img {

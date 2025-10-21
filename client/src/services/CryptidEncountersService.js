@@ -5,6 +5,12 @@ import { CryptidEncounterProfile } from "@/models/CryptidEncounterProfile.js"
 import { EncounteredCryptid } from "@/models/EncounteredCryptid.js"
 
 class CryptidEncountersService {
+  async deleteCryptidEncounter(cryptidEncounterId) {
+    const response = await api.delete(`api/cryptidEncounters/${cryptidEncounterId}`)
+    logger.log('DELETED ENCOUNTER', response.data)
+    const index = AppState.encounteredCryptids.findIndex(cryptid => cryptid.cryptidEncounterId == cryptidEncounterId)
+    AppState.encounteredCryptids.splice(index, 1)
+  }
   async getMyEncounteredCryptids() {
     const response = await api.get('account/cryptidEncounters')
     logger.log('GOT MY ENCOUNTERED CRYPTIDS', response.data)

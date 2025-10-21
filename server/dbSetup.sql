@@ -179,3 +179,15 @@ FROM
   INNER JOIN accounts ON accounts.id = cryptid_encounters.account_id
 WHERE
   cryptid_id = 1;
+
+SELECT
+  cryptids.*,
+  cryptid_encounters.created_at AS encountered_at,
+  cryptid_encounters.id AS cryptid_encounter_id,
+  accounts.*
+FROM
+  cryptid_encounters
+  INNER JOIN cryptids ON cryptids.id = cryptid_encounters.cryptid_id
+  INNER JOIN accounts ON accounts.id = cryptids.discoverer_id
+WHERE
+  account_id = '670ff93326693293c631476f';

@@ -6,12 +6,14 @@ namespace cryptipedia.Controllers;
 public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
+  private readonly CryptidEncountersService _cryptidEncountersService;
   private readonly Auth0Provider _auth0Provider;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
+  public AccountController(AccountService accountService, Auth0Provider auth0Provider, CryptidEncountersService cryptidEncountersService)
   {
     _accountService = accountService;
     _auth0Provider = auth0Provider;
+    _cryptidEncountersService = cryptidEncountersService;
   }
 
   [HttpGet]
@@ -25,6 +27,21 @@ public class AccountController : ControllerBase
     catch (Exception e)
     {
       return BadRequest(e.Message);
+    }
+  }
+
+  [HttpGet("cryptidEncounters")]
+  public async Task<ActionResult<List<EncounteredCryptid>>> GetCryptidsIHaveEncountered()
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      List<EncounteredCryptid> cryptids = _cryptidEncountersService.GetCryptidEncountersByAccountId(userInfo.Id);
+      return Ok(cryptids);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
     }
   }
 }

@@ -4,6 +4,10 @@ import { AppState } from "@/AppState.js"
 import { CryptidEncounterProfile } from "@/models/CryptidEncounterProfile.js"
 
 class CryptidEncountersService {
+  async createCryptidEncounter(cryptidEncounterData) {
+    const response = await api.post('api/cryptidEncounters', cryptidEncounterData)
+    logger.log('CREATED CRYPTID ENCOUNTER 🥸+🦟', response.data)
+  }
   async getCryptidEncountersByCryptidId(cryptidId) {
     const response = await api.get(`api/cryptids/${cryptidId}/cryptidEncounters`)
     logger.log('GOT CRYPTID ENCOUNTERS 🥸🥸🥸', response.data)

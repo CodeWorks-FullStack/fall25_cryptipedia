@@ -9,6 +9,7 @@ import { useRoute } from 'vue-router';
 
 const cryptid = computed(() => AppState.cryptid)
 const profiles = computed(() => AppState.cryptidEncounterProfiles)
+const account = computed(() => AppState.account)
 
 const route = useRoute()
 
@@ -34,6 +35,17 @@ async function getCryptidEncountersByCryptidId() {
     logger.error('COULD NOT GET ENCOUNTERS', error)
   }
 }
+
+async function createCryptidEncounter() {
+  try {
+    const cryptidEncounterData = { cryptidId: route.params.cryptidId }
+    await cryptidEncountersService.createCryptidEncounter(cryptidEncounterData)
+  } catch (error) {
+    Pop.error(error)
+    logger.error('COULD NOT CREATE CRYPTID ENCOUNTER', error)
+  }
+}
+
 </script>
 
 
@@ -62,6 +74,9 @@ async function getCryptidEncountersByCryptidId() {
             </span>
           </div>
           <h2 class="text-warning">Encountered By 900 Humans</h2>
+          <button @click="createCryptidEncounter()" v-if="account" class="btn btn-warning ibm-plex-mono-font mb-3">
+            I've encountered the {{ cryptid.name }}
+          </button>
           <div class="d-flex gap-3 flex-wrap">
             <img v-for="profile in profiles" :key="'cryptid-encounter-profile-' + profile.cryptidEncounterId"
               :src="profile.picture" :alt="'A picture of ' + profile.name" class="profile-img"

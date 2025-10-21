@@ -161,3 +161,11 @@ INSERT INTO
   cryptid_encounters (account_id, cryptid_id)
 VALUES
   ('65f87bc1e02f1ee243874743', 1);
+
+SELECT
+  accounts.*,
+  cryptid_encounters.id AS cryptid_encounter_id,
+  cryptid_encounters.created_at AS encountered_at
+FROM
+  cryptid_encounters
+  JOIN accounts ON accounts.id = cryptid_encounters.account_id;

@@ -1,5 +1,6 @@
 <script setup>
 import { AppState } from '@/AppState.js';
+import { cryptidEncountersService } from '@/services/CryptidEncountersService.js';
 import { cryptidsService } from '@/services/CryptidsService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
@@ -10,7 +11,10 @@ const cryptid = computed(() => AppState.cryptid)
 
 const route = useRoute()
 
-onMounted(getCryptidById)
+onMounted(() => {
+  getCryptidById()
+  getCryptidEncountersByCryptidId()
+})
 
 async function getCryptidById() {
   try {
@@ -18,6 +22,15 @@ async function getCryptidById() {
   } catch (error) {
     Pop.error(error)
     logger.error('COULD NOT GET CRYPTID', error)
+  }
+}
+
+async function getCryptidEncountersByCryptidId() {
+  try {
+    await cryptidEncountersService.getCryptidEncountersByCryptidId(route.params.cryptidId)
+  } catch (error) {
+    Pop.error(error)
+    logger.error('COULD NOT GET ENCOUNTERS', error)
   }
 }
 </script>
@@ -41,12 +54,13 @@ async function getCryptidById() {
             </span>
           </div>
           <h2>Threat Level</h2>
-          <div>
+          <div class="mb-4">
             <span :title="`Threat Level is ${cryptid.threatLevel}/10`">
               <span v-for="threatLevel in 10" :key="'cryptid-threat-level-' + threatLevel" class="mdi fs-2"
                 :class="cryptid.threatLevel < threatLevel ? 'mdi-circle-outline' : 'mdi-circle'"></span>
             </span>
           </div>
+          <h2 class="text-warning">Encountered By 900 Humans</h2>
         </div>
       </div>
       <div class="col-md-4 px-0">

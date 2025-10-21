@@ -23,6 +23,17 @@ CREATE TABLE
     FOREIGN KEY (discoverer_id) REFERENCES accounts (id) ON DELETE CASCADE
   );
 
+CREATE TABLE
+  cryptid_encounters (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    account_id VARCHAR(255) NOT NULL,
+    cryptid_id INT NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES accounts (id) ON DELETE CASCADE,
+    FOREIGN KEY (cryptid_id) REFERENCES cryptids (id) ON DELETE CASCADE
+  );
+
 DROP TABLE cryptids;
 
 INSERT INTO
@@ -145,3 +156,8 @@ Habitat: Dr. Pepper resides in a hidden laboratory nestled high in the treetops 
     '670ff93326693293c631476f',
     'hominid'
   );
+
+INSERT INTO
+  cryptid_encounters (account_id, cryptid_id)
+VALUES
+  ('65f87bc1e02f1ee243874743', 1);

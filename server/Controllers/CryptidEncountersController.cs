@@ -13,8 +13,7 @@ public class CryptidEncountersController : ControllerBase
     _auth0Provider = auth0Provider;
   }
 
-  [HttpPost]
-  [Authorize]
+  [HttpPost, Authorize]
   public async Task<ActionResult<CryptidEncounterProfile>> CreateCryptidEncounter([FromBody] CryptidEncounter cryptidEncounterData)
   {
     try
@@ -23,6 +22,21 @@ public class CryptidEncountersController : ControllerBase
       cryptidEncounterData.AccountId = userInfo.Id;
       CryptidEncounterProfile cryptidEncounter = _cryptidEncountersService.CreateCryptidEncounter(cryptidEncounterData);
       return Ok(cryptidEncounter);
+    }
+    catch (Exception exception)
+    {
+      return BadRequest(exception.Message);
+    }
+  }
+
+  [Authorize, HttpDelete("{cryptidEncounterId}")]
+  public async Task<ActionResult<string>> DeleteCryptidEncounter(int cryptidEncounterId)
+  {
+    try
+    {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      _cryptidEncountersService.DeleteCryptidEncounter(cryptidEncounterId, userInfo.Id);
+      return Ok("Deleted Cryptid Encounter!");
     }
     catch (Exception exception)
     {

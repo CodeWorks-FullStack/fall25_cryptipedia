@@ -1,6 +1,8 @@
 
 
 
+
+
 namespace cryptipedia.Repositories;
 
 public class CryptidEncountersRepository
@@ -28,6 +30,27 @@ public class CryptidEncountersRepository
     WHERE cryptid_encounters.id = LAST_INSERT_ID();";
 
     CryptidEncounterProfile cryptidEncounter = _db.Query<CryptidEncounterProfile>(sql, cryptidEncounterData).SingleOrDefault();
+
+    return cryptidEncounter;
+  }
+
+  internal void DeleteCryptidEncounter(int cryptidEncounterId)
+  {
+    string sql = "DELETE FROM cryptid_encounters WHERE id = @cryptidEncounterId LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { cryptidEncounterId });
+
+    if (rowsAffected != 1)
+    {
+      throw new Exception(rowsAffected + " rows are now gone and UH OH.");
+    }
+  }
+
+  internal CryptidEncounter GetCryptidEncounterById(int cryptidEncounterId)
+  {
+    string sql = "SELECT * FROM cryptid_encounters WHERE id = @cryptidEncounterId;";
+
+    CryptidEncounter cryptidEncounter = _db.Query<CryptidEncounter>(sql, new { cryptidEncounterId }).SingleOrDefault();
 
     return cryptidEncounter;
   }

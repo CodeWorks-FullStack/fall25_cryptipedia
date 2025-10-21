@@ -1,8 +1,3 @@
-
-
-
-
-
 namespace cryptipedia.Repositories;
 
 public class CryptidEncountersRepository
@@ -66,7 +61,7 @@ public class CryptidEncountersRepository
     FROM cryptid_encounters
     INNER JOIN cryptids ON cryptids.id = cryptid_encounters.cryptid_id
     INNER JOIN accounts ON accounts.id = cryptids.discoverer_id
-    WHERE account_id = @accountId;";
+    WHERE cryptid_encounters.account_id = @accountId;";
 
     List<EncounteredCryptid> cryptids = _db.Query(
       sql,

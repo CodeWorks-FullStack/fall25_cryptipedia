@@ -45,6 +45,7 @@ async function deleteCryptidEncounter() {
     <div v-if="route.name == 'Home'" class="position-absolute top-0 p-3 end-0">
       <span class="mdi mdi-ufo"></span> {{ cryptid.encounterCount }}
     </div>
+    <!-- NOTE since this sits *on top* of the RouterLink, it will not navigate you to a new page when clicked on -->
     <div @click="deleteCryptidEncounter()" v-if="route.name == 'Account'" role="button"
       :title="'Delete encounter with ' + cryptid.name" class="position-absolute top-0 p-3 end-0">
       <span class="mdi mdi-trash-can"></span>

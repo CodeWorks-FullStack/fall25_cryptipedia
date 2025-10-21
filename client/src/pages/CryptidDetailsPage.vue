@@ -38,6 +38,7 @@ async function getCryptidEncountersByCryptidId() {
 
 async function createCryptidEncounter() {
   try {
+    // REVIEW request body must be formatted as an object!!!
     const cryptidEncounterData = { cryptidId: route.params.cryptidId }
     await cryptidEncountersService.createCryptidEncounter(cryptidEncounterData)
   } catch (error) {
@@ -53,11 +54,13 @@ async function createCryptidEncounter() {
   <div class="container-fluid">
     <div v-if="cryptid" class="row">
       <div class="col-md-8">
-        <div class="italiana-font p-3">
-          <span class="text-capitalize fs-2 text-warning">
-            {{ cryptid.origin }} Cryptid
-          </span>
-          <h1 class="display-1">{{ cryptid.name.toUpperCase() }}</h1>
+        <div class="italiana-font px-3">
+          <h1 class="display-1 d-flex flex-column">
+            <span class="text-capitalize fs-2 text-warning">
+              {{ cryptid.origin }} Cryptid
+            </span>
+            <span class="text-uppercase">{{ cryptid.name }}</span>
+          </h1>
           <p class="ibm-plex-mono-font">{{ cryptid.description }}</p>
           <h2>Size</h2>
           <div>
@@ -76,7 +79,8 @@ async function createCryptidEncounter() {
           <h2 class="text-warning">
             Encountered By {{ profiles.length }} Human<span v-if="profiles.length != 1">s</span>
           </h2>
-          <button @click="createCryptidEncounter()" v-if="account" class="btn btn-warning ibm-plex-mono-font mb-3">
+          <button @click="createCryptidEncounter()" v-if="account" class="btn btn-warning ibm-plex-mono-font mb-3"
+            type="button">
             I've encountered the {{ cryptid.name }}
           </button>
           <div class="d-flex gap-3 flex-wrap">

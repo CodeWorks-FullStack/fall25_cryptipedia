@@ -48,12 +48,12 @@ INSERT INTO
   )
 VALUES
   (
-    'Abomination',
-    6,
-    1,
-    'https://images.unsplash.com/photo-1674681937504-d7e747c59a2c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687',
-    'terrestrial',
-    "The Abomination is a domestic-class cryptid resembling an ordinary housecat but harboring a sinister agenda: it vomits on your bed while you're at work, striking with surgical precision and emotional devastation. Though it appears cute and harmless, its glowing eyes and unsettling purr hint at ancient mischief. It targets freshly made beds, heirloom quilts, and guest linens, timing its attacks for maximum psychological impact—always while the human is away. The vomit is often perfectly centered, sometimes in a spiral, and the creature greets its victim at the door with innocent meows, feigning affection and ignorance. First documented in blurry Nest cam footage and whispered online accounts, the Abomination is believed to be summoned by phrases like “I just changed the sheets.” Countermeasures such as decoy blankets and motion-triggered cameras have proven futile, as footage often mysteriously corrupts. The Abomination cannot be stopped—only respected.",
+    'Ponyo',
+    10,
+    2,
+    'https://cdn.discordapp.com/attachments/1407020977619079169/1430261128620937398/5t0eps0ug2gf1.jpg?ex=68f921fa&is=68f7d07a&hm=56dcba4b926de252ed1e10496e594927299d12dd1b1084c3a7de8a3828a1bb23&',
+    'aquatic',
+    "Ponyo will eat your ham and your soul",
     '65f87bc1e02f1ee243874743'
   );
 
